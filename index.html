@@ -1,28 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Smartboard Prank 😈</title>
-  <style>
-    body { display:flex; justify-content:center; align-items:center; height:100vh; flex-direction:column; font-size:2em; }
-    button { padding:20px; font-size:1.2em; cursor:pointer; }
-  </style>
+<meta charset="UTF-8">
+<title>Reaper kinda tuff</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #111;
+        color: #f00;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+    }
+    img {
+        border: 5px solid #f00;
+        width: 80%;
+        max-width: 600px;
+        height: auto;
+        margin-bottom: 20px;
+    }
+    .box {
+        border: 2px solid #f00;
+        padding: 15px 25px;
+        margin: 5px;
+        font-size: 1.2em;
+        background: #222;
+        color: #fff;
+        display: inline-block;
+        min-width: 150px;
+    }
+    h1 {
+        margin-bottom: 10px;
+        color: #f00;
+    }
+    .prank-msg {
+        margin-top: 20px;
+        font-size: 1.5em;
+        animation: blink 1s infinite;
+    }
+    @keyframes blink {
+        0%, 50%, 100% {opacity: 1;}
+        25%, 75% {opacity: 0;}
+    }
+</style>
 </head>
 <body>
-  <h1>😏 Click here to continue!</h1>
-  <button onclick="startPrank()">Click Me!</button>
+    <h1>😱 REAPER ALERT 😱</h1>
 
-  <script>
-    function startPrank() {
-      // Request fullscreen
-      document.documentElement.requestFullscreen().catch(()=>{});
+    <!-- Image (GIF) -->
+    <img src="https://i.imgflip.com/9w3zdh.png?a487704" alt="Prank GIF">
 
-      // Ask for notifications
-      if ("Notification" in window) {
-        Notification.requestPermission();
-      }
+    <!-- Boxes with names -->
+    <div>
+        <div class="box">Ethantherizzler_1</div>
+        <div class="box">Reaper</div>
+    </div>
 
-      alert("You’ve been pranked! 😈");
-    }
-  </script>
+    <!-- Prank message -->
+    <div class="prank-msg">Ddosed yalls website like ahh protection     GET REAPER on _>  reaper-tools.vercel.app</div>
+
 </body>
 </html>
