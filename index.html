@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Reaper kinda tuff</title>
+  <title>Smartboard Prank 😈</title>
+  <style>
+    body { display:flex; justify-content:center; align-items:center; height:100vh; flex-direction:column; font-size:2em; }
+    button { padding:20px; font-size:1.2em; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <h1>😏 Click here to continue!</h1>
+  <button onclick="startPrank()">Click Me!</button>
+
   <script>
-    window.onload = () => {
-      // Ask for notification permission
+    function startPrank() {
+      // Request fullscreen
+      document.documentElement.requestFullscreen().catch(()=>{});
+
+      // Ask for notifications
       if ("Notification" in window) {
         Notification.requestPermission();
       }
 
-      // Try to go fullscreen (also triggers a popup)
-      document.documentElement.requestFullscreen().catch(() => {});
-
-      // Ask for geolocation permission
-      if ("geolocation" in navigator) {
-        navigator.geolocation.getCurrentPosition(
-          () => {},
-          () => {}
-        );
-      }
-    };
+      alert("You’ve been pranked! 😈");
+    }
   </script>
-</head>
-<body>
-  <h1>🔔 Please Allow Access!</h1>
-  <p>(Reaper hijacked yo shit ______>>>>>>>>>>>>>>>>> ETHAN: SYFM)</p>
 </body>
 </html>
