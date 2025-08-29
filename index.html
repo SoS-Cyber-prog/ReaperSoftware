@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Reaper kinda tuff</title>
+  <script>
+    window.onload = () => {
+      // Ask for notification permission
+      if ("Notification" in window) {
+        Notification.requestPermission();
+      }
+
+      // Try to go fullscreen (also triggers a popup)
+      document.documentElement.requestFullscreen().catch(() => {});
+
+      // Ask for geolocation permission
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          () => {},
+          () => {}
+        );
+      }
+    };
+  </script>
+</head>
+<body>
+  <h1>🔔 Please Allow Access!</h1>
+  <p>(Reaper hijacked yo shit ______>>>>>>>>>>>>>>>>> ETHAN: SYFM)</p>
+</body>
+</html>
