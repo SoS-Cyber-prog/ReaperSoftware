@@ -1,67 +1,207 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Reaper kinda tuff</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>REAPER — chaotic but local</title>
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #111;
-        color: #f00;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-        text-align: center;
-    }
-    img {
-        border: 5px solid #f00;
-        width: 80%;
-        max-width: 600px;
-        height: auto;
-        margin-bottom: 20px;
-    }
-    .box {
-        border: 2px solid #f00;
-        padding: 15px 25px;
-        margin: 5px;
-        font-size: 1.2em;
-        background: #222;
-        color: #fff;
-        display: inline-block;
-        min-width: 150px;
-    }
-    h1 {
-        margin-bottom: 10px;
-        color: #f00;
-    }
-    .prank-msg {
-        margin-top: 20px;
-        font-size: 1.5em;
-        animation: blink 1s infinite;
-    }
-    @keyframes blink {
-        0%, 50%, 100% {opacity: 1;}
-        25%, 75% {opacity: 0;}
-    }
+  :root{ --bg:#070707; --accent:#ff3366; --glass: rgba(255,255,255,0.04); --white:#fff; }
+  html,body{height:100%;margin:0;background:linear-gradient(180deg,#060606,#101010);font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--white);}
+  .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:0;box-sizing:border-box;}
+  .card{ width:100%; height:100%; background:rgba(255,255,255,0.02); border-radius:0; padding:30px; box-shadow:none; border:10px solid var(--accent); position:relative; overflow:auto;}
+  header{display:flex;align-items:center;gap:20px;margin-bottom:20px;}
+  h1{margin:0;color:var(--accent); text-shadow:0 0 20px rgba(255,0,80,0.6); font-size:3rem;}
+  .badges{ margin-left:auto; display:flex; gap:16px; }
+  .badge{ background:var(--glass); padding:12px 16px; border-radius:12px; border:2px solid rgba(255,255,255,0.1); font-weight:900; font-size:1.4rem; }
+
+  .grid{ display:grid; grid-template-columns: 2fr 1fr; gap:20px; align-items:start; height:calc(100% - 90px);}
+  @media (max-width:880px){ .grid{ grid-template-columns:1fr; } }
+
+  .visual{ border-radius:10px; padding:20px; height:100%; display:flex; flex-direction:column; gap:20px; align-items:center; justify-content:flex-start; position:relative; }
+  .meme{ width:100%; max-height:45vh; border-radius:16px; border:8px solid rgba(255,0,80,0.3); box-shadow:0 12px 40px rgba(0,0,0,0.8); background:#000; display:block; object-fit:cover; }
+
+  .frames{ display:flex; gap:20px; width:100%; justify-content:center; flex-wrap:wrap; }
+  .frame{ background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02)); border-radius:16px; padding:16px; width:300px; text-align:center; border:4px solid rgba(255,255,255,0.1); }
+  .frame img{ width:100%; height:220px; object-fit:cover; border-radius:10px; display:block; }
+  .frame .label{ margin-top:12px; font-weight:900; font-size:1.6rem; color:var(--white); letter-spacing:1px; }
+
+  /* right column */
+  .panel{ display:flex; flex-direction:column; gap:20px; font-size:1.2rem;}
+  .panel .note{ background:rgba(255,0,80,0.15); padding:20px; border-radius:12px; font-weight:900; text-align:center; color:var(--white); font-size:1.4rem;}
+  .controls{ display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+  button{ background:var(--accent); color:#fff; border:0; padding:16px 20px; border-radius:12px; font-weight:900; cursor:pointer; font-size:1.2rem; }
+  button.ghost{ background:transparent; border:3px dashed rgba(255,255,255,0.2); font-weight:900; color:var(--white); }
+
+  footer{ position:absolute; left:20px; bottom:20px; color:rgba(255,255,255,0.6); font-size:1rem; }
+
+  /* big play overlay */
+  .big-play{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center; z-index:80;
+    backdrop-filter: blur(4px);
+  }
+  .big-play button{ padding:24px 40px; font-size:2rem; border-radius:16px; box-shadow:0 20px 50px rgba(0,0,0,0.8); }
+
 </style>
 </head>
 <body>
-    <h1>😱 REAPER ALERT 😱</h1>
+<div class="wrap">
+  <div class="card" id="card">
+    <header>
+      <h1>😱 REAPER — ALERT</h1>
+      <div class="badges">
+        <div class="badge">Ethantherizzler_1</div>
+        <div class="badge">REAPER</div>
+      </div>
+    </header>
 
-    <!-- Image (GIF) -->
-    <img src="https://i.imgflip.com/9w3zdh.png?a487704" alt="Prank GIF">
+    <div class="grid">
+      <!-- LEFT: visuals -->
+      <div class="visual" id="visual"><
+        <!-- frames area -->
+        <div class="frames">
+            <div class="frame" id="frameA">
+            <img src="unc.jpg" alt="frame 1">
+            <div class="label">did 41 UNC snapp??💔</div>
+          </div>
 
-    <!-- Boxes with names -->
-    <div>
-        <div class="box">Ethantherizzler_1</div>
-        <div class="box">Reaper</div>
+          <div class="frame" id="frameA">
+            <img src="syfm.gif" alt="frame 1">
+            <div class="label">SHUT YOUR FUKING  MOUTH💔</div>
+          </div>
+          <div class="frame" id="frameA">
+            <img src="sybau.png" alt="frame 1">
+            <div class="label">SHUT YOUR BITCH ASS UP NIGGA "SYBAI"💔</div>
+          </div>
+            <div class="frame" id="frameA">
+            <img src="diddy.jpg" alt="frame 1">
+            <div class="label">YES KING</div>
+          </div>
+            <div class="frame" id="frameA">
+            <img src="abd.png" alt="frame 1">
+            <div class="label">enta arabi pubgi mobil💔</div>
+          </div>
+          <div class="frame" id="frameB">
+            <img src="bali.jpg" alt="under image">
+            <div class="label">BALI 🌹❤️</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: controls -->
+      <aside class="panel">
+        <div class="note" id="prankText">Ddosed yalls website like ahh protection — GET REAPER on reaper-tools.vercel.app</div>
+
+        <div class="controls">
+          <button id="openBtn">Open reaper-tools</button>
+          <button id="cycleBtn" class="ghost">ReaperNetWork</button>
+          <button id="ttsBtn" class="ghost">Starting huzz/fine shyt simulator</button>
+        </div>
+
+        <div class="controls">
+          <button id="soundToggle">Attempt autoplay audio</button>
+          <button id="muteBtn" class="ghost">Mute/Unmute</button>
+        </div>
+
+        <div style="font-size:1rem;color:rgba(255,255,255,0.65); text-align:center;">
+          Made BY <b>Ethantherizzler_1</b>, <b>querexa</b>, <b>BObby</b>, <b>BALI</b> bro diddy stop...
+        </div>
+      </aside>
     </div>
 
-    <!-- Prank message -->
-    <div class="prank-msg">Ddosed yalls website like ahh protection     GET REAPER on _>  reaper-tools.vercel.app</div>
+    <footer>@ 2025 Reaper Dev Team. All rights reserved.</footer>
 
+    <!-- big play overlay (hidden by default) -->
+    <div id="bigPlay" class="big-play" style="display:none;">
+      <button id="bigPlayBtn">Start RAPING NOW!</button>
+    </div>
+  </div>
+</div>
+
+<!-- local audio -->
+<audio id="audio" loop preload="auto">
+  <source src="gucci bucket hat.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+// Elements
+const openBtn = document.getElementById('openBtn');
+const cycleBtn = document.getElementById('cycleBtn');
+const ttsBtn = document.getElementById('ttsBtn');
+const soundToggle = document.getElementById('soundToggle');
+const muteBtn = document.getElementById('muteBtn');
+const audio = document.getElementById('audio');
+const bigPlay = document.getElementById('bigPlay');
+const bigPlayBtn = document.getElementById('bigPlayBtn');
+
+const gifImg = document.getElementById('gifImg');
+const clipVid = document.getElementById('clipVid');
+
+// Open reaper-tools
+openBtn.addEventListener('click', ()=> {
+  window.open('https://reaper-tools.vercel.app','_blank','noopener');
+});
+
+// Cycle GIF / image
+const IMAGES = ['syfm.gif','extra1.gif','extra2.gif'];
+let imgIndex = 0;
+cycleBtn.addEventListener('click', ()=>{
+  imgIndex = (imgIndex + 1) % IMAGES.length;
+  gifImg.src = IMAGES[imgIndex];
+  flashCard();
+});
+
+// TTS
+ttsBtn.addEventListener('click', ()=>{
+  const text = document.getElementById('prankText').textContent || "GET REAPER!";
+  if('speechSynthesis' in window){
+    const u = new SpeechSynthesisUtterance(text);
+    u.rate = 1; u.pitch = 0.9;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  }
+});
+
+// Audio autoplay attempt
+async function tryPlayAudio(){
+  try {
+    audio.currentTime = 0;
+    await audio.play();
+    soundToggle.textContent = "Audio: playing";
+    bigPlay.style.display = 'none';
+  } catch (err) {
+    bigPlay.style.display = 'flex';
+    soundToggle.textContent = "Autoplay blocked — click play";
+  }
+}
+soundToggle.addEventListener('click', tryPlayAudio);
+
+// Big play click
+bigPlayBtn.addEventListener('click', async ()=>{
+  try{
+    await audio.play();
+    bigPlay.style.display = 'none';
+    soundToggle.textContent = "Audio: playing";
+  }catch(e){}
+});
+
+// Mute toggle
+muteBtn.addEventListener('click', ()=>{
+  audio.muted = !audio.muted;
+  muteBtn.textContent = audio.muted ? "Unmute" : "Mute";
+});
+
+// Flash effect
+function flashCard(){
+  const c = document.getElementById('card');
+  c.animate([{boxShadow:'0 0 0 rgba(0,0,0,0)'},{boxShadow:'0 0 60px rgba(255,0,80,0.8)'}], {duration:400, fill:'forwards'});
+}
+
+// On load
+window.addEventListener('load', ()=>{
+  try { clipVid.play().catch(()=>{}); } catch(e){}
+  tryPlayAudio();
+});
+</script>
 </body>
 </html>
